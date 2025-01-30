@@ -1,0 +1,25 @@
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 50px;
+  align-self: flex-start;
+}
+
+.color-picker {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.color-picker::-webkit-color-swatch {
+  border-radius: 25px;
+  border: 2px solid #ccc;
+}
