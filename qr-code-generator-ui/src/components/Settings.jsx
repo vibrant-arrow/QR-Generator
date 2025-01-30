@@ -21,7 +21,7 @@ function Settings(props) {
   const [url, setUrl] = React.useState("");
   function handleUrlChange(event) {
     setUrl(event.target.value);
-    props.urlFnc(url);
+    props.urlFnc(event.target.value);
   }
 
   const [sliderValue, setSliderValue] = React.useState(50);
@@ -34,11 +34,11 @@ function Settings(props) {
     <Paper elevation={10} className="settings">
       <Typography
         variant="h5"
-        sx={{ fontWeight: "bold", marginBottom: "20px" }}
+        sx={{ fontWeight: "bold", marginBottom: "20px", textAlign: "center" }}
       >
         CONFIGURATION
       </Typography>
-      <TextField label="URL" onChange={handleUrlChange}></TextField>
+      <TextField label="URL" onChange={handleUrlChange} value={url}></TextField>
 
       <FormControl>
         <FormControlLabel

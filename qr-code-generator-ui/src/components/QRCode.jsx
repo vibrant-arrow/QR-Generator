@@ -5,6 +5,7 @@ import Settings from "./Settings";
 function QRCodeComponent(props) {
   const { size, level } = props;
   const canvasRef = useRef(null);
+  const [downloadLink, setDownloadLink] = useState(null);
 
   const [darkColor, setDarkColor] = useState("#000000");
   function updateDarkColor(newColor) {
@@ -49,6 +50,9 @@ function QRCodeComponent(props) {
         (error) => {
           if (error) {
             console.error("Error generating QR code:", error);
+          } else {
+            const dataURL = canvasRef.current.toDataURL("image/png"); // or 'image/jpeg'
+            setDownloadLink(dataURL);
           }
         }
       );
@@ -58,8 +62,9 @@ function QRCodeComponent(props) {
   return (
     <div className="workspace">
       <div className="qr-code">
-        <canvas ref={canvasRef} />
-
+        <a href={downloadLink} download="qrcode.png">
+          <canvas ref={canvasRef} />
+        </a>
         <p>Click on the image to download</p>
       </div>
 

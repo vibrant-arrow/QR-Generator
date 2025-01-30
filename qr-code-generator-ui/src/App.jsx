@@ -1,12 +1,12 @@
 import "./App.css";
 import QRCode from "./components/QRCode";
 import Footer from "./components/Footer";
-// import Links from "./components/Links";
+import Links from "./components/Links";
 function App() {
   return (
     <>
       <QRCode></QRCode>
-      {/* <Links></Links> */}
+      <Links></Links>
       <Footer></Footer>
     </>
   );

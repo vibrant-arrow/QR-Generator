@@ -7,9 +7,7 @@ function ColorPicker(props) {
 
   function handleColorChange(event) {
     setColor(event.target.value);
-    console.log(event.target.value);
-
-    props.colorFnc(color);
+    props.colorFnc(event.target.value);
   }
 
   return (

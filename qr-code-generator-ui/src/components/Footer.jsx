@@ -4,9 +4,9 @@ function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer>
+    <div className="footer">
       <p>Copyright © {year} | Vibrant Arrow</p>
-    </footer>
+    </div>
   );
 }
 
