@@ -1,5 +1,5 @@
 import React from "react";
-import "./links.css";
+import "./common.css";
 
 function Links() {
   return (
@@ -29,7 +29,7 @@ function Links() {
           </g>
         </svg>
       </a>
-      <a href="https://www.instagram.com/v1brantarr0w/" target="_blank">
+      <a href="https://www.instagram.com/vem.aiensi/" target="_blank">
         <svg
           width="800px"
           height="800px"

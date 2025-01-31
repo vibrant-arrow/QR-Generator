@@ -1,0 +1,82 @@
+.nav {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  box-shadow: 0 0 20px gray;
+}
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+.brand img {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  color: rgb(66, 66, 66);
+  font-size: 0.8rem;
+}
+.title span:first-child {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+.nav-links a {
+  display: flex;
+  align-items: center;
+}
+.nav-links svg {
+  width: 30px;
+  height: 30px;
+}
+
+.links {
+  background-color: blue;
+  position: absolute;
+  left: 0;
+  bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0 10px 0;
+  border-radius: 0 20px 20px 0;
+  align-self: flex-end;
+}
+a {
+  padding: none;
+  margin: none;
+  text-decoration: none;
+  transition: opacity 0.6s ease;
+}
+.links svg {
+  margin: 10px 20px 10px 20px;
+  width: 40px;
+  height: 40px;
+  fill: white;
+  stroke: white;
+}
+
+.links:hover > :not(:hover) {
+  opacity: 0.4;
+}
+
+.footer {
+  position: absolute;
+  bottom: 20px;
+  color: rgb(66, 66, 66);
+
+  height: 2.5rem;
+}

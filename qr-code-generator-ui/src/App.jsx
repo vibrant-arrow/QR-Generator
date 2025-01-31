@@ -1,10 +1,10 @@
 import "./App.css";
 import QRCode from "./components/QRCode";
-import Footer from "./components/Footer";
-import Links from "./components/Links";
+import { Nav, Footer, Links } from "./components/common/common";
 function App() {
   return (
     <>
+      <Nav></Nav>
       <QRCode></QRCode>
       <Links></Links>
       <Footer></Footer>
