@@ -39,13 +39,13 @@ function QRCodeComponent(props) {
         canvasRef.current,
         value,
         {
-          width: size || 500, // Default size
+          width: 500, // Default size
           margin: margin, // Add margin around the QR Code
           color: {
             dark: darkColor, // Foreground color
             light: lightColor, // Background color
           },
-          errorCorrectionLevel: level || "L", // Error correction level
+          errorCorrectionLevel: level || "H", // Error correction level
         },
         (error) => {
           if (error) {

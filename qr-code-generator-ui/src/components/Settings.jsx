@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import {
   Slider,
@@ -15,19 +15,19 @@ function Settings(props) {
 
   const marginMarks = [
     { value: 0, label: "0" },
-    { value: 100, label: "10" },
+    { value: 10, label: "10" },
   ];
 
-  const [url, setUrl] = React.useState("");
+  const [url, setUrl] = useState("");
   function handleUrlChange(event) {
     setUrl(event.target.value);
     props.urlFnc(event.target.value);
   }
 
-  const [sliderValue, setSliderValue] = React.useState(50);
+  const [sliderValue, setSliderValue] = useState(4);
   function handleSliderChange(event, newValue) {
     setSliderValue(newValue);
-    props.sliderFnc(newValue / 10);
+    props.sliderFnc(newValue);
   }
 
   return (
@@ -49,7 +49,10 @@ function Settings(props) {
               aria-label="Default"
               valueLabelDisplay="auto"
               marks={marginMarks}
-              step={10}
+              defaultValue={4}
+              min={0}
+              max={10}
+              step={1}
               onChange={handleSliderChange}
             />
           }
