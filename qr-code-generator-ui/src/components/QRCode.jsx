@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import QRCode from "qrcode";
 import Settings from "./Settings";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 function QRCodeComponent(props) {
   const { size, level } = props;
@@ -65,7 +66,9 @@ function QRCodeComponent(props) {
         <a href={downloadLink} download="qrcode.png">
           <canvas ref={canvasRef} />
         </a>
-        <p>Click on the image to download</p>
+        <div className="info">
+          <InfoOutlinedIcon /> <span>Click QR Code to download</span>
+        </div>
       </div>
 
       <Settings

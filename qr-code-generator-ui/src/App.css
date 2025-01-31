@@ -20,12 +20,15 @@
   box-shadow: 0 0 20px gray;
 }
 
-.qr-code p {
+.qr-code .info {
+  display: flex;
+  align-items: center;
   margin-top: 30px;
-  padding: 2px 30px 2px 30px;
+  padding: 10px 20px 10px 20px;
   border-radius: 10px;
-  background-color: rgb(150, 150, 150);
+  background-color: rgb(137, 221, 255);
   text-align: center;
+  gap: 10px;
 }
 
 .footer {
