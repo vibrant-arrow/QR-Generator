@@ -80,3 +80,9 @@ a {
 
   height: 2.5rem;
 }
+
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
