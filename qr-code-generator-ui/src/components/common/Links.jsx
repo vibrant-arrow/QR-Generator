@@ -1,9 +1,12 @@
 import React from "react";
 import "./common.css";
+import { useMediaQuery } from "@mui/material";
 
 function Links() {
+  const matches = useMediaQuery("(min-width: 950px");
+
   return (
-    <div className="links">
+    <div className={matches ? "links" : "links-row"}>
       <a href="https://www.linkedin.com/in/vem-aiensi/" target="_blank">
         <svg
           width="207px"

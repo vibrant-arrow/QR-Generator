@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import Links from "./Links";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
+import "./common.css";
 
 export default function NavDrawer() {
   const [open, setOpen] = React.useState(false);
