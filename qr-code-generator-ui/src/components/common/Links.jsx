@@ -3,7 +3,7 @@ import "./common.css";
 import { useMediaQuery } from "@mui/material";
 
 function Links() {
-  const matches = useMediaQuery("(min-width: 950px");
+  const matches = useMediaQuery("(min-width: 1100px");
 
   return (
     <div className={matches ? "links" : "links-row"}>

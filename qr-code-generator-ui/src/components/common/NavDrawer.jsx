@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import Links from "./Links";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
+import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
 import "./common.css";
 
 export default function NavDrawer() {
@@ -15,7 +16,12 @@ export default function NavDrawer() {
 
   return (
     <div>
-      <Button onClick={toggleDrawer(true)}>Open drawer</Button>
+      <div className="side-nav-btn">
+        <Button onClick={toggleDrawer(true)}>
+          <ArrowForwardIosRoundedIcon />
+        </Button>
+      </div>
+
       <Drawer open={open} onClose={toggleDrawer(false)}>
         <div className="side-nav">
           <Nav></Nav>

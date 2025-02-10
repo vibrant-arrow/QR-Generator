@@ -2,42 +2,58 @@ import React, { useState, useRef, useEffect } from "react";
 import QRCode from "qrcode";
 import Settings from "./Settings";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-
-function QRCodeComponent(props) {
-  const { size, level } = props;
+import { useMediaQuery } from "@mui/material";
+function QRCodeComponent({ value, darkColor, lightColor, margin }) {
+  const wideScreen = useMediaQuery("(min-width: 1100px)");
+  const [containerWidth, setContainerWidth] = useState(0);
   const canvasRef = useRef(null);
+  const downloadRef = useRef(null);
   const [downloadLink, setDownloadLink] = useState(null);
 
-  const [darkColor, setDarkColor] = useState("#000000");
-  function updateDarkColor(newColor) {
-    setDarkColor(newColor);
-  }
+  useEffect(() => {
+    // Get the width of the container element.  This assumes your canvas is inside a div or other container.
+    function handleResize() {
+      if (canvasRef.current && canvasRef.current.parentNode) {
+        setContainerWidth(canvasRef.current.parentNode.offsetWidth);
+      }
+    }
 
-  const [lightColor, setLightColor] = useState("#ffffff");
-  function updateLightColor(newColor) {
-    setLightColor(newColor);
-  }
+    handleResize(); // Initial measurement
+    window.addEventListener("resize", handleResize); // Update on resize
 
-  const [value, setValue] = useState(
-    "https://vibrant-arrow.pages.dev/motivation/"
-  );
-  const [margin, setMargin] = useState(4);
-
-  function changeMargin(newMargin) {
-    setMargin(newMargin);
-  }
-
-  function updateValue(newValue) {
-    newValue
-      ? setValue(newValue)
-      : setValue("https://vibrant-arrow.pages.dev/motivation/");
-  }
+    return () => {
+      window.removeEventListener("resize", handleResize); // Clean up
+    };
+  }, []);
 
   useEffect(() => {
     if (value) {
-      // Only generate if a value is provided
+      // for display
       QRCode.toCanvas(
         canvasRef.current,
+        value,
+        {
+          width: containerWidth, // Default size
+          margin: margin, // Add margin around the QR Code
+          color: {
+            dark: darkColor, // Foreground color
+            light: lightColor, // Background color
+          },
+          errorCorrectionLevel: "H", // Error correction level
+        },
+        (error) => {
+          if (error) {
+            console.error("Error generating QR code:", error);
+          } else {
+            const dataURL = canvasRef.current.toDataURL("image/png"); // or 'image/jpeg'
+            setDownloadLink(dataURL);
+          }
+        }
+      );
+
+      //for download
+      QRCode.toCanvas(
+        downloadRef.current,
         value,
         {
           width: 500, // Default size
@@ -46,7 +62,7 @@ function QRCodeComponent(props) {
             dark: darkColor, // Foreground color
             light: lightColor, // Background color
           },
-          errorCorrectionLevel: level || "H", // Error correction level
+          errorCorrectionLevel: "H", // Error correction level
         },
         (error) => {
           if (error) {
@@ -58,24 +74,21 @@ function QRCodeComponent(props) {
         }
       );
     }
-  }, [value, size, level, darkColor, lightColor, margin]); // Re-render when these props change
+  }, [containerWidth, value, darkColor, lightColor, margin]); // Re-render when these props change
 
   return (
-    <div className="workspace">
+    <div className={wideScreen ? "output-container" : "output-container-col"}>
       <div className="qr-code">
         <a href={downloadLink} download="qrcode.png">
+          {" "}
+          {/* Transparent overlay */}
           <canvas ref={canvasRef} />
+          <canvas ref={downloadRef} style={{ display: "none" }} />
         </a>
         <div className="info">
           <InfoOutlinedIcon /> <span>Click QR Code to download</span>
         </div>
       </div>
-
-      <Settings
-        colorFncs={[updateDarkColor, updateLightColor]}
-        urlFnc={updateValue}
-        sliderFnc={changeMargin}
-      ></Settings>
     </div>
   );
 }

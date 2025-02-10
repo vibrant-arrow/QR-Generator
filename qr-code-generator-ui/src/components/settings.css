@@ -1,9 +1,15 @@
 .settings {
+  box-sizing: border-box;
+  justify-self: flex-end;
+  width: 500px;
   display: flex;
   flex-direction: column;
   gap: 30px;
   padding: 50px;
-  align-self: flex-start;
+  padding-top: 150px;
+  height: 100vh;
+  margin-left: 80px;
+  /* align-self: flex-start; */
 }
 
 .color-picker {
@@ -22,4 +28,15 @@
 .color-picker::-webkit-color-swatch {
   border-radius: 25px;
   border: 2px solid #ccc;
+}
+
+.invisible {
+  display: none;
+}
+
+.current-control {
+  height: 100px;
+  display: flex;
+  place-items: center;
+  justify-content: center;
 }
