@@ -9,6 +9,11 @@ function App() {
 
   //qrcode image configs
   // const { size, level } = props;
+  const [ecLevel, setECLevel] = useState("L");
+  function updateLevel(newLevel) {
+    setECLevel(newLevel);
+  }
+
   const [darkColor, setDarkColor] = useState("#000000");
   function updateDarkColor(newColor) {
     setDarkColor(newColor);
@@ -26,12 +31,11 @@ function App() {
       : setValue("https://vibrant-arrow.pages.dev/motivation/");
   }
   const [margin, setMargin] = useState(4);
-
   function changeMargin(newMargin) {
     setMargin(newMargin);
   }
 
-  const props = { value, darkColor, lightColor, margin };
+  const props = { value, darkColor, lightColor, margin, ecLevel };
 
   return (
     <>
@@ -44,6 +48,7 @@ function App() {
               colorFncs={[updateDarkColor, updateLightColor]}
               urlFnc={updateValue}
               sliderFnc={changeMargin}
+              levelFnc={updateLevel}
             ></Settings>
           </div>
 

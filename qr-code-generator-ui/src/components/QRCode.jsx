@@ -3,7 +3,7 @@ import QRCode from "qrcode";
 import Settings from "./Settings";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { useMediaQuery } from "@mui/material";
-function QRCodeComponent({ value, darkColor, lightColor, margin }) {
+function QRCodeComponent({ value, darkColor, lightColor, margin, ecLevel }) {
   const wideScreen = useMediaQuery("(min-width: 1100px)");
   const [containerWidth, setContainerWidth] = useState(0);
   const canvasRef = useRef(null);
@@ -39,7 +39,7 @@ function QRCodeComponent({ value, darkColor, lightColor, margin }) {
             dark: darkColor, // Foreground color
             light: lightColor, // Background color
           },
-          errorCorrectionLevel: "H", // Error correction level
+          errorCorrectionLevel: ecLevel, // Error correction level
         },
         (error) => {
           if (error) {
@@ -62,7 +62,7 @@ function QRCodeComponent({ value, darkColor, lightColor, margin }) {
             dark: darkColor, // Foreground color
             light: lightColor, // Background color
           },
-          errorCorrectionLevel: "H", // Error correction level
+          errorCorrectionLevel: ecLevel, // Error correction level
         },
         (error) => {
           if (error) {
@@ -73,8 +73,10 @@ function QRCodeComponent({ value, darkColor, lightColor, margin }) {
           }
         }
       );
+
+      const lorem = "lorem";
     }
-  }, [containerWidth, value, darkColor, lightColor, margin]); // Re-render when these props change
+  }, [containerWidth, value, darkColor, lightColor, margin, ecLevel]); // Re-render when these props change
 
   return (
     <div className={wideScreen ? "output-container" : "output-container-col"}>

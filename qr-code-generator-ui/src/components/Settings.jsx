@@ -7,6 +7,9 @@ import {
   Typography,
   BottomNavigation,
   BottomNavigationAction,
+  InputLabel,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import ColorPicker from "./ColorPicker";
@@ -23,6 +26,11 @@ function Settings(props) {
     { value: 0, label: "0" },
     { value: 10, label: "10" },
   ];
+  const [ecLevel, setECLevel] = useState("L");
+  function handleLevelChange(event) {
+    setECLevel(event.target.value);
+    props.levelFnc(event.target.value);
+  }
 
   const [url, setUrl] = useState("");
   function handleUrlChange(event) {
@@ -84,6 +92,23 @@ function Settings(props) {
           colorFnc={light}
         ></ColorPicker>
       </div>
+
+      <FormControl>
+        <InputLabel id="demo-simple-select-label">
+          Error Correction Rate
+        </InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={ecLevel}
+          label="Error Correction Rate"
+          onChange={handleLevelChange}
+        >
+          <MenuItem value="L">Low</MenuItem>
+          <MenuItem value="M">Medium</MenuItem>
+          <MenuItem value="H">High</MenuItem>
+        </Select>
+      </FormControl>
     </Paper>
   ) : (
     <Paper>
