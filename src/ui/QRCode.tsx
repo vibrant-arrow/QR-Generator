@@ -1,0 +1,36 @@
+import { useRef, useEffect } from "react";
+import QRCode from "qrcode";
+
+type props = {
+  value: string;
+  logo: string;
+};
+
+export default function QRImage({ value, logo }: props) {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    QRCode.toCanvas(
+      canvasRef.current,
+      value, //Value
+      {
+        margin: 0, // Add margin around the QR Code
+        color: {
+          dark: "#000000", // Foreground color
+          light: "#f1f8fc", // Background color
+        },
+        errorCorrectionLevel: "M", // Error correction level
+      }
+    );
+  }, [value]);
+
+  return (
+    <div className="qr-code">
+      <div className="logo">
+        <img src={logo} alt="" />
+      </div>
+
+      <canvas ref={canvasRef} />
+    </div>
+  );
+}
