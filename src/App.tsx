@@ -25,7 +25,7 @@ function App() {
   const [value, setValue] = useState(
     "https://vibrant-arrow.pages.dev/motivation/"
   );
-  function updateValue(newValue) {
+  function updateValue(newValue: string) {
     newValue
       ? setValue(newValue)
       : setValue("https://vibrant-arrow.pages.dev/motivation/");
@@ -38,37 +38,24 @@ function App() {
   const props = { value, darkColor, lightColor, margin, ecLevel };
 
   return (
-    <>
-      {matches ? (
-        <>
-          <Nav></Nav>
-          <div className="workspace">
-            <QRCode {...props}></QRCode>
-            <Settings
-              colorFncs={[updateDarkColor, updateLightColor]}
-              urlFnc={updateValue}
-              sliderFnc={changeMargin}
-              levelFnc={updateLevel}
-            ></Settings>
-          </div>
+    <div className="app">
+      <div className="workspace">
+        <Nav></Nav>
+        <Settings
+          colorFncs={[updateDarkColor, updateLightColor]}
+          urlFnc={updateValue}
+          sliderFnc={changeMargin}
+          levelFnc={updateLevel}
+        ></Settings>
+      </div>
 
-          <Links></Links>
-          <Footer></Footer>
-        </>
-      ) : (
-        <>
-          <NavDrawer></NavDrawer>
-          <div className="workspace-col">
-            <QRCode {...props}></QRCode>
-            <Settings
-              colorFncs={[updateDarkColor, updateLightColor]}
-              urlFnc={updateValue}
-              sliderFnc={changeMargin}
-            ></Settings>
-          </div>
-        </>
-      )}
-    </>
+      <div className="preview-pane">
+        <QRCode {...props}></QRCode>
+      </div>
+
+      <Links></Links>
+      {/* <Footer></Footer> */}
+    </div>
   );
 }
 

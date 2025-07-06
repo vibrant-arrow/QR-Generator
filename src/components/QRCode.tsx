@@ -91,9 +91,6 @@ function QRCodeComponent({ value, darkColor, lightColor, margin, ecLevel }) {
           <canvas ref={canvasRef} />
           <canvas ref={downloadRef} style={{ display: "none" }} />
         </a>
-        <div className="info">
-          <InfoOutlinedIcon /> <span>Click QR Code to download</span>
-        </div>
       </div>
     </div>
   );
